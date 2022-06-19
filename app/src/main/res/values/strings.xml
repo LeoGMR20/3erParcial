@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">3erParcial - Leandro Morales</string>
+
+    <!--Registro de libres-->
+
+    <string name="titRegistro">Registro de libros</string>
+    <string name="hintNombre">Nombre</string>
+    <string name="hintAutor">Nombre completo del autor</string>
+    <string name="hintDescripcion">Descripción</string>
+
+    <!--Botones-->
+
+    <string name="txtRegistrar">Registrar</string>
+    <string name="txtVer">Ver Registros</string>
+</resources>

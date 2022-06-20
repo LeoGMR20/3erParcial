@@ -1,6 +1,12 @@
 package com.example.a3erparcial_leandromorales;
 
+import android.graphics.Bitmap;
+import android.media.Image;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
 import java.util.Date;
 
 /*Aplique la lógica para registrar libros en la biblioteca de la universidad.
@@ -8,7 +14,7 @@ import java.util.Date;
 * La clase necesita constructores, uno con imagen y otro sin imagen (Por si no se consigue la imagen de la portada del libro)
 * Getters para obtener los datos de un objeto para ponerlos en una lista layout*/
 
-public class Libro implements Serializable {
+public class Libro implements Parcelable {
 
     //Atributos (aplicando encapsulamiento)
 
@@ -17,25 +23,12 @@ public class Libro implements Serializable {
     private String autor;
     private String categoria;
     private String descripcion;
-    private Date fechaPublicacion;
+    private String fechaPublicacion;
     private int edicion;
-    private int imagen;
 
-    //Constructores (aplicando polimorfismo)
+    //Constructores
 
-
-    public Libro(int id, String nombre, String autor, String categoria, String descripcion, Date fechaPublicacion, int edicion, int imagen) {
-        this.id = id;
-        this.nombre = nombre;
-        this.autor = autor;
-        this.categoria = categoria;
-        this.descripcion = descripcion;
-        this.fechaPublicacion = fechaPublicacion;
-        this.edicion = edicion;
-        this.imagen = imagen;
-    }
-
-    public Libro(int id, String nombre, String autor, String categoria, String descripcion, Date fechaPublicacion, int edicion) {
+    public Libro(int id, String nombre, String autor, String categoria, String descripcion, String fechaPublicacion, int edicion) {
         this.id = id;
         this.nombre = nombre;
         this.autor = autor;
@@ -46,7 +39,6 @@ public class Libro implements Serializable {
     }
 
     //Getters
-
 
     public int getId() {
         return id;
@@ -68,7 +60,7 @@ public class Libro implements Serializable {
         return descripcion;
     }
 
-    public Date getFechaPublicacion() {
+    public String getFechaPublicacion() {
         return fechaPublicacion;
     }
 
@@ -76,7 +68,58 @@ public class Libro implements Serializable {
         return edicion;
     }
 
-    public int getImagen() {
-        return imagen;
+    //En caso de ser necesario --> toString
+
+
+    @Override
+    public String toString() {
+        return "Libro:\n" +
+                "id:" + id + "\n"+
+                "nombre:" + nombre + "\n"+
+                "autor:" + autor +"\n"+
+                "categoria:" + categoria +"\n"+
+                "descripcion:" + descripcion +"\n"+
+                "fechaPublicacion:" + fechaPublicacion +"\n"+
+                "edicion:" + edicion + "\n";
+    }
+
+    //Para el funcionamiento de parcel
+
+    protected Libro(Parcel in) {
+        id = in.readInt();
+        nombre = in.readString();
+        autor = in.readString();
+        categoria = in.readString();
+        descripcion = in.readString();
+        fechaPublicacion = in.readString();
+        edicion = in.readInt();
+    }
+
+    public static final Creator<Libro> CREATOR = new Creator<Libro>() {
+        @Override
+        public Libro createFromParcel(Parcel in) {
+            return new Libro(in);
+        }
+
+        @Override
+        public Libro[] newArray(int size) {
+            return new Libro[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(nombre);
+        parcel.writeString(autor);
+        parcel.writeString(categoria);
+        parcel.writeString(descripcion);
+        parcel.writeString(fechaPublicacion);
+        parcel.writeInt(edicion);
     }
 }

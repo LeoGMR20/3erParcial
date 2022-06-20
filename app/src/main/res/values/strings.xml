@@ -1,15 +1,19 @@
 <resources>
     <string name="app_name">3erParcial - Leandro Morales</string>
 
-    <!--Registro de libres-->
+    <!--Registro de libros-->
 
     <string name="titRegistro">Registro de libros</string>
-    <string name="hintNombre">Nombre</string>
-    <string name="hintAutor">Nombre completo del autor</string>
-    <string name="hintDescripcion">Descripción</string>
+    <string name="hintNombre">Nombre:</string>
+    <string name="hintAutor">Nombre del autor:</string>
+    <string name="hintDescripcion">Descripción:</string>
+    <string name="hintFecha">Fecha de publicación:</string>
+    <string name="hintEdicion">Edicion (número):</string>
+    <string name="txtCategoria">Categoría:</string>
+    <string name="txtId">Libro:</string>
 
     <!--Botones-->
 
     <string name="txtRegistrar">Registrar</string>
-    <string name="txtVer">Ver Registros</string>
+    <string name="txtVerRegistros">Ver Registros</string>
 </resources>
